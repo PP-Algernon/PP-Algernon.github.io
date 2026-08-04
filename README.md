@@ -60,7 +60,9 @@
 `social_links` 里的图标名来自 [Bootstrap Icons](https://icons.getbootstrap.com/)。
 
 `theme` 中的背景图片配置（可选）：
-- `background_image` — 背景图路径，本地文件（建议放 `static/assets/img/`）或网络 URL 均可，支持 GIF 动图；留空 `""` 则不启用，只显示默认的动态渐变光斑。建议文件名只用英文/数字（中文、括号等字符在部分环境下可能加载失败）
+- `background_image` — 单张背景图路径，本地文件（建议放 `static/assets/img/`）或网络 URL 均可，支持 GIF 动图；留空 `""` 则不启用，只显示默认的动态渐变光斑。建议文件名只用英文/数字（中文、括号等字符在部分环境下可能加载失败）
+- `background_images` — 多张背景图数组，配置后优先于 `background_image`。每次打开页面**随机**挑一张显示
+- `background_rotate_interval` — 轮换间隔（秒）。大于 0 且有多张图时，定时按顺序淡入淡出切换；设为 `0` 则只随机不轮换（最短 5 秒）
 - `background_opacity` — 背景图不透明度 0~1，建议 0.2~0.5，太高会影响文字可读性
 - `background_blur` — 背景图模糊像素值，0 为不模糊，8~16 可做毛玻璃效果
 - `background_pixelated` — 设为 `true` 时禁用缩放平滑，像素风图片放大后保持锐利的颗粒感（像素画 GIF 建议开启，普通照片保持 `false`）

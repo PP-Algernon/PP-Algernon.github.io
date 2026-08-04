@@ -17,11 +17,12 @@ function applyThemeColors(config) {
     if (config.theme?.primary_color) root.setProperty('--primary', config.theme.primary_color);
     if (config.theme?.secondary_color) root.setProperty('--secondary', config.theme.secondary_color);
 
-    // 背景图片：theme.background_image 非空时启用（本地路径或 URL 均可,GIF 动图同样支持）
-    if (config.theme?.background_image) {
-        // 必须转为绝对 URL:CSS 变量里的相对路径会被浏览器按 main.css 所在目录解析,导致 404
-        const bgUrl = new URL(config.theme.background_image, document.baseURI).href;
-        root.setProperty('--bg-image', `url("${bgUrl}")`);
+    // 背景图片：theme.background_images(多张) 或 background_image(单张) 非空时启用。
+    // 多张时打开页面随机挑一张;background_rotate_interval > 0 时定时淡入淡出轮换。
+    const images = (config.theme?.background_images?.length
+        ? config.theme.background_images
+        : [config.theme?.background_image]).filter(Boolean);
+    if (images.length) {
         if (config.theme.background_opacity != null) {
             root.setProperty('--bg-image-opacity', config.theme.background_opacity);
         }
@@ -33,6 +34,50 @@ function applyThemeColors(config) {
         if (config.theme.background_pixelated) {
             document.documentElement.setAttribute('data-bg-pixelated', 'on');
         }
+        initBackgroundImages(images, config.theme.background_rotate_interval);
+    }
+}
+
+/* 背景图层：双层交替淡入淡出。CSS 变量里的相对路径会按 main.css 目录解析,
+   所以这里统一转为基于页面的绝对 URL */
+function initBackgroundImages(images, rotateInterval) {
+    const scene = document.querySelector('.bg-scene');
+    if (!scene) return;
+
+    const urls = images.map(p => new URL(p, document.baseURI).href);
+    // 随机起点(单张时恒为 0)
+    let index = Math.floor(Math.random() * urls.length);
+
+    // 两个图层,交替承载当前图片,靠 opacity 过渡实现淡入淡出
+    const layers = [0, 1].map(() => {
+        const el = document.createElement('div');
+        el.className = 'bg-img-layer';
+        scene.prepend(el);   // 放最底层,光斑和网格盖在上面
+        return el;
+    });
+    let active = 0;
+
+    function show(i) {
+        const next = 1 - active;
+        // 预加载完成后再切换,避免闪空白
+        const img = new Image();
+        img.onload = () => {
+            layers[next].style.backgroundImage = `url("${urls[i]}")`;
+            layers[next].classList.add('visible');
+            layers[active].classList.remove('visible');
+            active = next;
+        };
+        img.src = urls[i];
+    }
+
+    show(index);
+
+    const interval = Number(rotateInterval) || 0;
+    if (interval > 0 && urls.length > 1) {
+        setInterval(() => {
+            index = (index + 1) % urls.length;
+            show(index);
+        }, Math.max(interval, 5) * 1000);   // 最短 5 秒,防手滑填太小
     }
 }
 

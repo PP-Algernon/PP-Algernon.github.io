@@ -6,7 +6,20 @@
   "theme": {
     "primary_color": "#6a11cb",
     "secondary_color": "#2575fc",
-    "background_image": "static/assets/img/bg-neon-street.gif",
+    "background_images": [
+      "static/assets/img/bg-neon-street.gif",
+      "static/assets/img/bg-cyber-city.gif",
+      "static/assets/img/bg-moon-balcony.gif",
+      "static/assets/img/bg-canal-night.gif",
+      "static/assets/img/bg-snow-station.gif",
+      "static/assets/img/bg-fish-shop.gif",
+      "static/assets/img/bg-koi-pond.gif",
+      "static/assets/img/bg-graffiti-stairs.gif",
+      "static/assets/img/bg-greenhouse.gif",
+      "static/assets/img/bg-vending-machine.gif",
+      "static/assets/img/bg-sky-city.gif"
+    ],
+    "background_rotate_interval": 60,
     "background_opacity": 0.4,
     "background_blur": 0,
     "background_pixelated": true
