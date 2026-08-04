@@ -51,9 +51,9 @@ body {
 }
 
 .container {
-    max-width: 1180px;
+    max-width: min(1480px, 94vw);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
 }
 
 a { color: var(--secondary); text-decoration: none; }
@@ -613,7 +613,7 @@ a:hover { text-decoration: underline; }
 .blog-layout {
     padding-top: 100px;
     padding-bottom: 4rem;
-    max-width: 900px;
+    max-width: 1080px;
 }
 
 .blog-header { text-align: center; margin-bottom: 1.75rem; }
@@ -725,7 +725,7 @@ a:hover { text-decoration: underline; }
 .post-layout {
     padding-top: 100px;
     padding-bottom: 4rem;
-    max-width: 860px;
+    max-width: 1000px;
 }
 
 .post-article { padding: 2.25rem 2.5rem; }
