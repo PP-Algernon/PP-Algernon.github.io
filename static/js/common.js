@@ -12,10 +12,23 @@ async function loadConfig() {
     return res.json();
 }
 
+let _themeConfig = null;   // 缓存配置,供深浅模式切换时重新应用主题色
+
 function applyThemeColors(config) {
+    _themeConfig = config;
     const root = document.documentElement.style;
-    if (config.theme?.primary_color) root.setProperty('--primary', config.theme.primary_color);
-    if (config.theme?.secondary_color) root.setProperty('--secondary', config.theme.secondary_color);
+
+    // 主题色支持按深浅模式分别配置:theme.light / theme.dark 优先,
+    // 未配置时回落到 theme.primary_color / secondary_color
+    const mode = document.documentElement.getAttribute('data-theme') || resolveTheme(config);
+    const modeColors = config.theme?.[mode] || {};
+    const primary = modeColors.primary_color || config.theme?.primary_color;
+    const secondary = modeColors.secondary_color || config.theme?.secondary_color;
+    if (primary) root.setProperty('--primary', primary);
+    if (secondary) root.setProperty('--secondary', secondary);
+
+    // 背景图只初始化一次(切换深浅模式时重复调用本函数,跳过)
+    if (document.documentElement.getAttribute('data-bg-image') === 'on') return;
 
     // 背景图片：theme.background_images(多张) 或 background_image(单张) 非空时启用。
     // 多张时打开页面随机挑一张;background_rotate_interval > 0 时定时淡入淡出轮换。
@@ -95,6 +108,8 @@ function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     const icon = document.querySelector('#theme-toggle i');
     if (icon) icon.className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+    // 深浅模式各自的主题色(theme.light / theme.dark)随模式切换
+    if (_themeConfig) applyThemeColors(_themeConfig);
 }
 
 function bindThemeToggle(onChange) {

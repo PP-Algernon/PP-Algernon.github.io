@@ -1,11 +1,17 @@
 {
   "github_username": "PP-Algernon",
-  "name": "蒲夏睿 PuXiarui",
-  "bio": "武汉理工大学 · 自动化专业 | RoboMaster 电控开发 | 机器人运动控制与嵌入式系统",
-  "dark_mode": "auto",
+  "name": "Hi! I'm PuXiarui",
+  "bio": "武汉理工大学 · 自动化专业 | RoboMaster 电控开发 | 机器人运动控制与嵌入式",
+  "dark_mode": "light",
   "theme": {
-    "primary_color": "#6a11cb",
-    "secondary_color": "#2575fc",
+    "light": {
+      "primary_color": "#8F5FA8",
+      "secondary_color": "#708090"
+    },
+    "dark": {
+      "primary_color": "#D8BFD8",
+      "secondary_color": "#C0C0C0"
+    },
     "background_images": [
       "static/assets/img/bg-neon-street.gif",
       "static/assets/img/bg-cyber-city.gif",
@@ -20,7 +26,7 @@
       "static/assets/img/bg-sky-city.gif"
     ],
     "background_rotate_interval": 60,
-    "background_opacity": 0.4,
+    "background_opacity": 0.45,
     "background_blur": 0,
     "background_pixelated": true
   },
@@ -39,5 +45,5 @@
   ],
   "blog_subtitle": "记录学习、思考与实践",
   "max_repos": 6,
-  "copyright": "© 2026 蒲夏睿 (PP-Algernon). All Rights Reserved."
+  "copyright": "© 2026 PP-Algernon. All Rights Reserved."
 }
