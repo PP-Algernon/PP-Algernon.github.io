@@ -13,11 +13,12 @@
 
 ```
 .
-├── index.html          # 首页
+├── index.html          # 欢迎引导页（站点入口：基础信息 + 页面导航）
+├── home.html           # 个人主页（简介/项目/成果/奖项）
 ├── blog.html           # 博客列表页
 ├── post.html           # 博客文章页
 ├── config.json         # 个人信息与站点配置（改这里！）
-├── contents/           # 首页各分区的 Markdown 内容
+├── contents/           # 主页各分区的 Markdown 内容
 │   ├── home.md         # 个人简介（默认自动加载 GitHub 个人介绍）
 │   ├── publications.md # 论文/成果
 │   └── awards.md       # 奖项荣誉

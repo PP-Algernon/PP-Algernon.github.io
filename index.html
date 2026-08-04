@@ -3,21 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="个人主页">
-    <title>个人主页</title>
+    <meta name="description" content="欢迎页">
+    <title>欢迎</title>
     <link rel="icon" id="favicon" href="static/assets/favicon.svg" type="image/svg+xml">
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- Markdown -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
 
     <link rel="stylesheet" href="static/css/main.css">
+    <style>
+        /* ---------- 引导页专属样式 ---------- */
+        .landing {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .landing-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid var(--glass-border);
+            box-shadow: 0 0 24px color-mix(in srgb, var(--primary) 50%, transparent);
+            animation: landing-glow 3s ease-in-out infinite alternate;
+        }
+        @keyframes landing-glow {
+            from { box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 35%, transparent); }
+            to   { box-shadow: 0 0 32px color-mix(in srgb, var(--primary) 75%, transparent); }
+        }
+
+        .landing-name {
+            margin: 20px 0 0;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .landing-bio {
+            margin: 12px auto 0;
+            max-width: 560px;
+            color: var(--text-muted);
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+
+        .landing-links {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            width: min(680px, 100%);
+        }
+        @media (max-width: 560px) {
+            .landing-links { grid-template-columns: 1fr; }
+        }
+
+        .landing-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 22px 16px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            color: var(--text);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .landing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--glass-shadow-hover);
+            text-decoration: none;
+        }
+        .landing-card i {
+            font-size: 1.7rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .landing-card .card-title { font-weight: 700; }
+        .landing-card .card-desc { font-size: 0.82rem; color: var(--text-muted); }
+
+        .landing-enter {
+            margin-top: 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 34px;
+            border-radius: 999px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 18px color-mix(in srgb, var(--primary) 40%, transparent);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .landing-enter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px color-mix(in srgb, var(--primary) 55%, transparent);
+            text-decoration: none;
+        }
+
+        .landing-footer {
+            position: fixed;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* 入场动画 */
+        .landing > * { animation: landing-rise 0.7s ease both; }
+        .landing > *:nth-child(2) { animation-delay: 0.1s; }
+        .landing > *:nth-child(3) { animation-delay: 0.2s; }
+        .landing > *:nth-child(4) { animation-delay: 0.35s; }
+        .landing > *:nth-child(5) { animation-delay: 0.5s; }
+        @keyframes landing-rise {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <!-- 动态渐变背景 -->
+    <!-- 动态渐变背景（与主页共用样式） -->
     <div class="bg-scene" aria-hidden="true">
         <div class="bg-blob blob-1"></div>
         <div class="bg-blob blob-2"></div>
@@ -25,72 +146,66 @@
         <div class="bg-grid"></div>
     </div>
 
-    <!-- 顶部导航栏 -->
-    <nav class="navbar" id="main-nav">
-        <div class="container nav-inner">
-            <a class="nav-brand" href="#top" id="nav-brand">
-                <img id="nav-avatar" src="static/assets/img/avatar.svg" alt="">
-                <span id="nav-name">&nbsp;</span>
+    <main class="landing">
+        <img class="landing-avatar" id="landing-avatar" src="static/assets/img/avatar.svg" alt="头像">
+        <h1 class="landing-name" id="landing-name">&nbsp;</h1>
+        <p class="landing-bio" id="landing-bio"></p>
+
+        <div class="landing-links">
+            <a class="landing-card" href="home.html">
+                <i class="bi bi-person-badge"></i>
+                <span class="card-title">个人主页</span>
+                <span class="card-desc">关于我 · 项目 · 成果</span>
             </a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="菜单">
-                <i class="bi bi-list"></i>
-            </button>
-            <div class="nav-menu" id="nav-menu">
-                <ul class="nav-items" id="nav-items"></ul>
-                <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="切换深浅模式">
-                    <i class="bi bi-moon-stars"></i>
-                </button>
-                <a class="icon-btn" id="nav-github" href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub">
-                    <i class="bi bi-github"></i>
-                </a>
-            </div>
+            <a class="landing-card" href="blog.html">
+                <i class="bi bi-journal-text"></i>
+                <span class="card-title">博客</span>
+                <span class="card-desc">记录学习与思考</span>
+            </a>
+            <a class="landing-card" id="landing-github" href="https://github.com" target="_blank" rel="noopener">
+                <i class="bi bi-github"></i>
+                <span class="card-title">GitHub</span>
+                <span class="card-desc">查看我的开源代码</span>
+            </a>
         </div>
-    </nav>
 
-    <!-- 主体：左侧个人信息 + 右侧内容 -->
-    <main class="container layout" id="top">
-
-        <!-- 左侧边栏 -->
-        <aside class="sidebar">
-            <div class="glass-panel profile-card fade-in">
-                <div class="avatar-wrap">
-                    <img id="profile-avatar" class="avatar-glow" src="static/assets/img/avatar.svg" alt="头像">
-                    <span class="avatar-ring" aria-hidden="true"></span>
-                </div>
-                <h1 class="profile-name" id="profile-name">&nbsp;</h1>
-                <p class="profile-bio" id="profile-bio"></p>
-                <div class="profile-meta" id="profile-meta"></div>
-                <a class="btn-gradient" id="profile-github-btn" href="https://github.com" target="_blank" rel="noopener">
-                    <i class="bi bi-github"></i> 访问我的 GitHub
-                </a>
-                <div class="stats-grid" id="profile-stats"></div>
-                <div class="profile-social" id="profile-social"></div>
-            </div>
-
-            <div class="glass-panel side-card fade-in delay-1" id="tech-card" hidden>
-                <h3 class="side-card-title"><i class="bi bi-stack"></i> 技术栈</h3>
-                <div class="tech-tags" id="tech-tags"></div>
-            </div>
-
-            <div class="glass-panel side-card fade-in delay-2" id="lang-card" hidden>
-                <h3 class="side-card-title"><i class="bi bi-pie-chart-fill"></i> 语言分布</h3>
-                <div class="chart-wrap"><canvas id="lang-chart"></canvas></div>
-            </div>
-        </aside>
-
-        <!-- 右侧内容区（分区由 JS 渲染） -->
-        <div class="content" id="sections"></div>
+        <a class="landing-enter" href="home.html">
+            进入主页 <i class="bi bi-arrow-right"></i>
+        </a>
     </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <p id="copyright-text"></p>
-            <p class="footer-note">Powered by <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></p>
-        </div>
+    <footer class="landing-footer">
+        <span id="copyright-text"></span>
     </footer>
 
     <script src="static/js/common.js"></script>
-    <script src="static/js/main.js"></script>
+    <script>
+        (async () => {
+            try {
+                const config = await loadConfig();
+                applyThemeColors(config);
+                applyTheme(resolveTheme(config));
+
+                document.title = `${config.name || '个人主页'} - 欢迎`;
+                document.getElementById('landing-name').textContent = config.name || '';
+                document.getElementById('landing-bio').textContent = config.bio || '';
+                document.getElementById('copyright-text').textContent = config.copyright || '';
+
+                if (config.github_username) {
+                    document.getElementById('landing-github').href = `https://github.com/${config.github_username}`;
+                    // 头像：优先用主页缓存过的，否则直接取 GitHub 头像
+                    const avatar = localStorage.getItem('gh_avatar')
+                        || `https://github.com/${config.github_username}.png?size=220`;
+                    const img = document.getElementById('landing-avatar');
+                    img.onerror = () => { img.onerror = null; img.src = 'static/assets/img/avatar.svg'; };
+                    img.src = avatar;
+                    document.getElementById('favicon').href = avatar;
+                }
+            } catch (e) {
+                console.error(e);
+                document.getElementById('landing-name').textContent = '个人主页';
+            }
+        })();
+    </script>
 </body>
 </html>

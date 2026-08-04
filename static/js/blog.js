@@ -91,7 +91,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     applyTheme(resolveTheme(config));
     bindThemeToggle();
 
-    renderNav(config, { base: 'index.html' });
+    renderNav(config, { base: 'home.html' });
     bindNavToggle();
     renderFooter(config);
 

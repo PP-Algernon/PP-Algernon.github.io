@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="博客文章">
-    <title>文章</title>
+    <meta name="description" content="个人主页">
+    <title>个人主页</title>
     <link rel="icon" id="favicon" href="static/assets/favicon.svg" type="image/svg+xml">
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
-    <!-- 代码高亮 -->
-    <link id="hljs-theme-light" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
-    <link id="hljs-theme-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css" disabled>
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
 
     <link rel="stylesheet" href="static/css/main.css">
 </head>
@@ -23,13 +21,14 @@
     <div class="bg-scene" aria-hidden="true">
         <div class="bg-blob blob-1"></div>
         <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
         <div class="bg-grid"></div>
     </div>
 
     <!-- 顶部导航栏 -->
     <nav class="navbar" id="main-nav">
         <div class="container nav-inner">
-            <a class="nav-brand" href="home.html" id="nav-brand">
+            <a class="nav-brand" href="#top" id="nav-brand">
                 <img id="nav-avatar" src="static/assets/img/avatar.svg" alt="">
                 <span id="nav-name">&nbsp;</span>
             </a>
@@ -48,18 +47,39 @@
         </div>
     </nav>
 
-    <!-- 文章正文 -->
-    <main class="container post-layout">
-        <article class="glass-panel post-article fade-in">
-            <a class="post-back" href="blog.html"><i class="bi bi-arrow-left"></i> 返回博客列表</a>
-            <header class="post-header">
-                <h1 id="post-title">&nbsp;</h1>
-                <div class="post-meta" id="post-meta"></div>
-            </header>
-            <div class="md-body post-body" id="post-body">
-                <p style="color:var(--text-muted)">加载中……</p>
+    <!-- 主体：左侧个人信息 + 右侧内容 -->
+    <main class="container layout" id="top">
+
+        <!-- 左侧边栏 -->
+        <aside class="sidebar">
+            <div class="glass-panel profile-card fade-in">
+                <div class="avatar-wrap">
+                    <img id="profile-avatar" class="avatar-glow" src="static/assets/img/avatar.svg" alt="头像">
+                    <span class="avatar-ring" aria-hidden="true"></span>
+                </div>
+                <h1 class="profile-name" id="profile-name">&nbsp;</h1>
+                <p class="profile-bio" id="profile-bio"></p>
+                <div class="profile-meta" id="profile-meta"></div>
+                <a class="btn-gradient" id="profile-github-btn" href="https://github.com" target="_blank" rel="noopener">
+                    <i class="bi bi-github"></i> 访问我的 GitHub
+                </a>
+                <div class="stats-grid" id="profile-stats"></div>
+                <div class="profile-social" id="profile-social"></div>
             </div>
-        </article>
+
+            <div class="glass-panel side-card fade-in delay-1" id="tech-card" hidden>
+                <h3 class="side-card-title"><i class="bi bi-stack"></i> 技术栈</h3>
+                <div class="tech-tags" id="tech-tags"></div>
+            </div>
+
+            <div class="glass-panel side-card fade-in delay-2" id="lang-card" hidden>
+                <h3 class="side-card-title"><i class="bi bi-pie-chart-fill"></i> 语言分布</h3>
+                <div class="chart-wrap"><canvas id="lang-chart"></canvas></div>
+            </div>
+        </aside>
+
+        <!-- 右侧内容区（分区由 JS 渲染） -->
+        <div class="content" id="sections"></div>
     </main>
 
     <!-- 页脚 -->
@@ -71,6 +91,6 @@
     </footer>
 
     <script src="static/js/common.js"></script>
-    <script src="static/js/post.js"></script>
+    <script src="static/js/main.js"></script>
 </body>
 </html>

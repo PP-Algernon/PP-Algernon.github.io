@@ -1,6 +1,6 @@
 /* ==========================================================
    多页面共用逻辑：配置加载 / 主题模式 / 导航栏 / 工具函数
-   被 index.html、blog.html、post.html 共同引用
+   被 home.html、blog.html、post.html 共同引用
    ========================================================== */
 
 const CONFIG_FILE = 'config.json';
@@ -59,7 +59,7 @@ function bindThemeToggle(onChange) {
 
 /**
  * 渲染导航栏。
- * opts.base — 分区锚点的前缀：首页为 ''，子页面为 'index.html'
+ * opts.base — 分区锚点的前缀：主页为 ''，子页面为 'home.html'
  * opts.name — 导航栏显示的名字（可选，默认取 config.name）
  */
 function renderNav(config, opts = {}) {

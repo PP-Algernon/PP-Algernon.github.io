@@ -89,7 +89,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     syncHljsTheme();
     bindThemeToggle(() => syncHljsTheme());
 
-    renderNav(config, { base: 'index.html' });
+    renderNav(config, { base: 'home.html' });
     bindNavToggle();
     renderFooter(config);
 
