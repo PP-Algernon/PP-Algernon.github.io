@@ -1,0 +1,26 @@
+{
+  "github_username": "PP-Algernon",
+  "name": "PP-Algernon",
+  "bio": "",
+  "dark_mode": "auto",
+  "theme": {
+    "primary_color": "#6a11cb",
+    "secondary_color": "#2575fc"
+  },
+  "introduction_from_github": true,
+  "social_links": [
+    { "icon": "github", "label": "GitHub", "url": "https://github.com/PP-Algernon" }
+  ],
+  "sections": [
+    { "id": "home", "nav": "简介", "title": "关于我", "icon": "person-fill" },
+    { "id": "github", "nav": "项目", "title": "GitHub 项目", "icon": "github", "type": "github" },
+    { "id": "publications", "nav": "成果", "title": "论文与成果", "icon": "file-text-fill" },
+    { "id": "awards", "nav": "奖项", "title": "奖项荣誉", "icon": "award-fill" }
+  ],
+  "pages": [
+    { "nav": "博客", "url": "blog.html" }
+  ],
+  "blog_subtitle": "记录学习、思考与实践",
+  "max_repos": 6,
+  "copyright": "© 2026 PP-Algernon. All Rights Reserved."
+}
