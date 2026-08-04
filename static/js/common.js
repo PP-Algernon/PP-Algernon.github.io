@@ -17,9 +17,9 @@ function applyThemeColors(config) {
     if (config.theme?.primary_color) root.setProperty('--primary', config.theme.primary_color);
     if (config.theme?.secondary_color) root.setProperty('--secondary', config.theme.secondary_color);
 
-    // 背景图片：theme.background_image 非空时启用（本地路径或 URL 均可）
+    // 背景图片：theme.background_image 非空时启用（本地路径或 URL 均可,GIF 动图同样支持）
     if (config.theme?.background_image) {
-        root.setProperty('--bg-image', `url("${config.theme.background_image}")`);
+        root.setProperty('--bg-image', `url("${encodeURI(config.theme.background_image)}")`);
         if (config.theme.background_opacity != null) {
             root.setProperty('--bg-image-opacity', config.theme.background_opacity);
         }
@@ -27,6 +27,10 @@ function applyThemeColors(config) {
             root.setProperty('--bg-image-blur', `${config.theme.background_blur}px`);
         }
         document.documentElement.setAttribute('data-bg-image', 'on');
+        // 像素风图片：保持像素锐利,不做平滑插值
+        if (config.theme.background_pixelated) {
+            document.documentElement.setAttribute('data-bg-pixelated', 'on');
+        }
     }
 }
 

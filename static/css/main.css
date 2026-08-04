@@ -89,6 +89,9 @@ a:hover { text-decoration: underline; }
 /* 启用背景图后,光斑淡一些,避免喧宾夺主 */
 [data-bg-image="on"] .bg-blob { opacity: calc(var(--blob-opacity) * 0.5); }
 
+/* 像素风背景:禁用平滑插值,放大后保持像素颗粒感 */
+[data-bg-pixelated="on"] .bg-scene::before { image-rendering: pixelated; }
+
 .bg-blob {
     position: absolute;
     border-radius: 50%;
