@@ -68,36 +68,6 @@ function renderProfile(config) {
     // GitHub 按钮
     const btn = document.getElementById('profile-github-btn');
     if (config.github_username) btn.href = `https://github.com/${config.github_username}`;
-
-    // 统计
-    const stats = document.getElementById('profile-stats');
-    stats.replaceChildren();
-    if (u) {
-        const totalStars = state.ghRepos.reduce((s, r) => s + r.stargazers_count, 0);
-        [
-            { num: u.public_repos, label: 'Repos' },
-            { num: totalStars, label: 'Stars' },
-            { num: u.followers, label: 'Followers' },
-        ].forEach(s => {
-            const div = document.createElement('div');
-            div.className = 'stat-box';
-            div.innerHTML = `<div class="num">${s.num}</div><div class="label">${s.label}</div>`;
-            stats.appendChild(div);
-        });
-    }
-
-    // 社交链接
-    const social = document.getElementById('profile-social');
-    social.replaceChildren();
-    (config.social_links || []).forEach(link => {
-        const a = document.createElement('a');
-        a.href = link.url;
-        a.title = link.label || '';
-        a.target = link.url.startsWith('mailto:') ? '_self' : '_blank';
-        a.rel = 'noopener';
-        a.innerHTML = `<i class="bi bi-${link.icon || 'link-45deg'}"></i>`;
-        social.appendChild(a);
-    });
 }
 
 function renderSectionShells(config) {
@@ -177,7 +147,13 @@ async function fetchGithub(config) {
         ]);
         if (!userRes.ok || !repoRes.ok) throw new Error('GitHub API 请求失败');
         state.ghUser = await userRes.json();
-        state.ghRepos = (await repoRes.json()).filter(r => !r.fork);
+        // 排除 fork、主页仓库(<用户名>.github.io)、个人介绍仓库(<用户名>/<用户名>),
+        // 以及 config.exclude_repos 中列出的仓库
+        const excluded = new Set(
+            [`${user}.github.io`, user, ...(config.exclude_repos || [])].map(n => n.toLowerCase())
+        );
+        state.ghRepos = (await repoRes.json())
+            .filter(r => !r.fork && !excluded.has(r.name.toLowerCase()));
     } catch (e) {
         console.warn('GitHub 数据获取失败：', e);
     }

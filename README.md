@@ -67,6 +67,9 @@
 - `background_blur` — 背景图模糊像素值，0 为不模糊，8~16 可做毛玻璃效果
 - `background_pixelated` — 设为 `true` 时禁用缩放平滑，像素风图片放大后保持锐利的颗粒感（像素画 GIF 建议开启，普通照片保持 `false`）
 
+GitHub 项目区默认排除 fork 仓库、主页仓库（`<用户名>.github.io`）和个人介绍仓库（`<用户名>/<用户名>`）；
+要额外排除其他仓库，在 `config.json` 顶层加 `"exclude_repos": ["仓库名1", "仓库名2"]`。技术栈和语言分布统计同样基于过滤后的仓库。
+
 ### 2. 编辑内容
 
 直接修改 `contents/` 下的 Markdown 文件。要增删分区，编辑 `config.json` 的 `sections`：
