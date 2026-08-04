@@ -19,7 +19,9 @@ function applyThemeColors(config) {
 
     // 背景图片：theme.background_image 非空时启用（本地路径或 URL 均可,GIF 动图同样支持）
     if (config.theme?.background_image) {
-        root.setProperty('--bg-image', `url("${encodeURI(config.theme.background_image)}")`);
+        // 必须转为绝对 URL:CSS 变量里的相对路径会被浏览器按 main.css 所在目录解析,导致 404
+        const bgUrl = new URL(config.theme.background_image, document.baseURI).href;
+        root.setProperty('--bg-image', `url("${bgUrl}")`);
         if (config.theme.background_opacity != null) {
             root.setProperty('--bg-image-opacity', config.theme.background_opacity);
         }
