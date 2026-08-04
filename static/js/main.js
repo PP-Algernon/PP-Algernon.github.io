@@ -191,15 +191,38 @@ function renderSidebarExtras() {
     });
 }
 
-/* 内容区：GitHub 项目分区 */
-function renderGithubSection(config, sectionId) {
+/* 内容区：GitHub 项目分区(支持在仓库列表上方渲染 contents/<id>.md 作为项目介绍) */
+async function renderGithubSection(config, sectionId) {
     const target = document.getElementById(sectionId + '-body');
     if (!target) return;
     target.replaceChildren();
 
+    // 先渲染手写的项目介绍(contents/<id>.md,不存在则跳过)
+    try {
+        const res = await fetch(CONTENT_DIR + sectionId + '.md');
+        if (res.ok) {
+            const md = await res.text();
+            const intro = document.createElement('div');
+            intro.className = 'md-body gh-intro';
+            intro.innerHTML = sanitizeHtml(marked.parse(md));
+            target.appendChild(intro);
+        }
+    } catch { /* 无介绍文件则只显示仓库列表 */ }
+
     if (!state.ghUser) {
-        target.innerHTML = '<div class="gh-error"><i class="bi bi-github"></i> 暂无 GitHub 数据 —— 请检查网络，或确认 config.json 中的 <code>github_username</code> 配置正确。</div>';
+        const err = document.createElement('div');
+        err.className = 'gh-error';
+        err.innerHTML = '<i class="bi bi-github"></i> 暂无 GitHub 数据 —— 请检查网络，或确认 config.json 中的 <code>github_username</code> 配置正确。';
+        target.appendChild(err);
         return;
+    }
+
+    // 仓库列表小标题(有介绍时区隔开)
+    if (target.querySelector('.gh-intro')) {
+        const sub = document.createElement('h3');
+        sub.className = 'gh-repos-subtitle';
+        sub.innerHTML = '<i class="bi bi-github"></i> GitHub 仓库';
+        target.appendChild(sub);
     }
 
     // 项目列表（按 stars 排序）

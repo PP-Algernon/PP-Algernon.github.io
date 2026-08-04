@@ -535,6 +535,21 @@ a:hover { text-decoration: underline; }
 .md-body th { background: var(--code-bg); }
 
 /* ---------- GitHub 项目列表 ---------- */
+/* 项目经历分区:手写介绍(gh-intro)下方接仓库列表小标题 */
+.gh-intro { margin-bottom: 1.5rem; }
+
+.gh-repos-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 0.9rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+}
+.gh-repos-subtitle i { color: var(--primary); }
+
 .repo-list { display: flex; flex-direction: column; gap: 0.85rem; }
 
 .repo-item {

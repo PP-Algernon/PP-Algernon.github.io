@@ -36,8 +36,7 @@
   ],
   "sections": [
     { "id": "home", "nav": "简介", "title": "关于我", "icon": "person-fill" },
-    { "id": "github", "nav": "项目", "title": "GitHub 项目", "icon": "github", "type": "github" },
-    { "id": "publications", "nav": "成果", "title": "项目成果", "icon": "file-text-fill" },
+    { "id": "projects", "nav": "项目", "title": "项目经历", "icon": "code-square", "type": "github" },
     { "id": "awards", "nav": "奖项", "title": "奖项荣誉", "icon": "award-fill" }
   ],
   "pages": [
