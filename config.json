@@ -1,7 +1,7 @@
 {
   "github_username": "PP-Algernon",
-  "name": "PP-Algernon",
-  "bio": "",
+  "name": "蒲夏睿 PuXiarui",
+  "bio": "武汉理工大学 · 自动化专业 | RoboMaster 电控开发 | 机器人运动控制与嵌入式系统",
   "dark_mode": "auto",
   "theme": {
     "primary_color": "#6a11cb",
@@ -14,7 +14,7 @@
   "sections": [
     { "id": "home", "nav": "简介", "title": "关于我", "icon": "person-fill" },
     { "id": "github", "nav": "项目", "title": "GitHub 项目", "icon": "github", "type": "github" },
-    { "id": "publications", "nav": "成果", "title": "论文与成果", "icon": "file-text-fill" },
+    { "id": "publications", "nav": "成果", "title": "项目成果", "icon": "file-text-fill" },
     { "id": "awards", "nav": "奖项", "title": "奖项荣誉", "icon": "award-fill" }
   ],
   "pages": [
@@ -22,5 +22,5 @@
   ],
   "blog_subtitle": "记录学习、思考与实践",
   "max_repos": 6,
-  "copyright": "© 2026 PP-Algernon. All Rights Reserved."
+  "copyright": "© 2026 蒲夏睿 (PP-Algernon). All Rights Reserved."
 }

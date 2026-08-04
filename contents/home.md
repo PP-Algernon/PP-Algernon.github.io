@@ -1,2 +1,12 @@
-> 本页「关于我」内容默认自动加载 GitHub 个人介绍（[PP-Algernon/PP-Algernon](https://github.com/PP-Algernon/PP-Algernon) 仓库的 README）。
-> 只有当 GitHub 拉取失败时才会显示本文件内容 —— 如需改用本地介绍，把 `config.json` 中的 `introduction_from_github` 设为 `false` 并编辑本文件即可。
+# 👋 你好,我是蒲夏睿 (PuXiarui)
+
+> 🤖 RoboMaster 机甲大师竞赛选手 | 武汉理工大学 · 自动化专业
+
+我专注于机器人嵌入式控制与运动算法,在赛队中负责步兵与工程机器人的电控开发,从底层驱动到上层控制全栈参与。
+
+- 🏫 **教育背景**:武汉理工大学 · 自动化专业
+- 🚀 **研究方向**:机器人运动控制、嵌入式系统开发、智能控制算法
+- 🎮 **竞赛经历**:RoboMaster 机甲大师赛 · 电控组成员
+- 🌱 **正在学习**:ROS2 机器人操作系统、强化学习在机器人控制中的应用
+
+> 本页内容默认自动加载 GitHub 个人介绍(`PP-Algernon/PP-Algernon` 仓库的 README),此文件为拉取失败时的本地兜底内容。
