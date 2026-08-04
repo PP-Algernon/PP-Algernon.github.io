@@ -200,6 +200,7 @@ a:hover { text-decoration: underline; }
 }
 
 .nav-inner {
+    position: relative;   /* 供菜单链接绝对定位居中用 */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -239,6 +240,11 @@ a:hover { text-decoration: underline; }
     display: flex;
     list-style: none;
     gap: 0.25rem;
+    /* 桌面端:菜单按钮在导航栏正中,不受两侧品牌/图标宽度影响 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .nav-items a {
@@ -819,7 +825,12 @@ a:hover { text-decoration: underline; }
     }
 
     .nav-menu.open { display: flex; }
-    .nav-items { flex-direction: column; }
+    /* 折叠菜单内恢复文档流,取消桌面端的绝对居中 */
+    .nav-items {
+        flex-direction: column;
+        position: static;
+        transform: none;
+    }
     .theme-toggle { align-self: flex-start; }
     #nav-github { align-self: flex-start; }
 
