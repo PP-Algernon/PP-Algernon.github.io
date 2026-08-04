@@ -5,7 +5,10 @@
   "dark_mode": "auto",
   "theme": {
     "primary_color": "#6a11cb",
-    "secondary_color": "#2575fc"
+    "secondary_color": "#2575fc",
+    "background_image": "",
+    "background_opacity": 0.35,
+    "background_blur": 0
   },
   "introduction_from_github": true,
   "social_links": [

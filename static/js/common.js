@@ -16,6 +16,18 @@ function applyThemeColors(config) {
     const root = document.documentElement.style;
     if (config.theme?.primary_color) root.setProperty('--primary', config.theme.primary_color);
     if (config.theme?.secondary_color) root.setProperty('--secondary', config.theme.secondary_color);
+
+    // 背景图片：theme.background_image 非空时启用（本地路径或 URL 均可）
+    if (config.theme?.background_image) {
+        root.setProperty('--bg-image', `url("${config.theme.background_image}")`);
+        if (config.theme.background_opacity != null) {
+            root.setProperty('--bg-image-opacity', config.theme.background_opacity);
+        }
+        if (config.theme.background_blur != null) {
+            root.setProperty('--bg-image-blur', `${config.theme.background_blur}px`);
+        }
+        document.documentElement.setAttribute('data-bg-image', 'on');
+    }
 }
 
 /* ---------------- 主题模式 ---------------- */

@@ -47,13 +47,21 @@
   "bio": "一句话介绍自己",
   "theme": {
     "primary_color": "#6a11cb",
-    "secondary_color": "#2575fc"
+    "secondary_color": "#2575fc",
+    "background_image": "static/assets/img/bg.jpg",
+    "background_opacity": 0.35,
+    "background_blur": 0
   }
 }
 ```
 
 设置了 `github_username` 后，头像、名称、统计数据会自动从 GitHub 拉取；
 `social_links` 里的图标名来自 [Bootstrap Icons](https://icons.getbootstrap.com/)。
+
+`theme` 中的背景图片配置（可选）：
+- `background_image` — 背景图路径，本地文件（建议放 `static/assets/img/`）或网络 URL 均可；留空 `""` 则不启用，只显示默认的动态渐变光斑
+- `background_opacity` — 背景图不透明度 0~1，建议 0.2~0.5，太高会影响文字可读性
+- `background_blur` — 背景图模糊像素值，0 为不模糊，8~16 可做毛玻璃效果
 
 ### 2. 编辑内容
 

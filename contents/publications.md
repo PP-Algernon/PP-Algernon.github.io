@@ -11,11 +11,9 @@
    [[Code]](https://github.com/PP-Algernon/RM_PRIME_f407_Template_HAL)
 
 3. **达妙喵板模板工程** ⭐2
-   基于 STM32H723XG 的标准化开发模板,采用分层架构(Application / Boards / Core / Device / Drivers)与 CMake + Make 构建体系,为 RoboMaster 开发提供实用基础框架。
+   基于 STM32H723XG 的标准化开发模板,采用分层架构与 CMake + Make 构建体系,为 RoboMaster 开发提供实用基础框架。
    [[Code]](https://github.com/PP-Algernon/RM_Miao_h723_Template)
 
 ## 🎓 课程与算法项目
 
-4. **二级倒立摆智能控制**
-   智能控制课程作业:倒立摆系统建模,对比 PID / 自适应 PID / BP 神经网络控制 / 深度强化学习 (SAC) 等控制方法。
-   [[Code]](https://github.com/PP-Algernon/Double-cartpole-control)
+

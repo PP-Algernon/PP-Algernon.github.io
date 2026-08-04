@@ -67,6 +67,28 @@ a:hover { text-decoration: underline; }
     overflow: hidden;
 }
 
+/* 背景图片层：config.json 的 theme.background_image 非空时启用。
+   通过 --bg-image / --bg-image-opacity / --bg-image-blur 控制 */
+:root {
+    --bg-image: none;
+    --bg-image-opacity: 0.35;
+    --bg-image-blur: 0px;
+}
+
+[data-bg-image="on"] .bg-scene::before {
+    content: '';
+    position: absolute;
+    inset: calc(-2 * var(--bg-image-blur));   /* 外扩,避免模糊后边缘发白 */
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    opacity: var(--bg-image-opacity);
+    filter: blur(var(--bg-image-blur));
+}
+
+/* 启用背景图后,光斑淡一些,避免喧宾夺主 */
+[data-bg-image="on"] .bg-blob { opacity: calc(var(--blob-opacity) * 0.5); }
+
 .bg-blob {
     position: absolute;
     border-radius: 50%;
