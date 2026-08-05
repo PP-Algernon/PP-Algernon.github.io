@@ -619,9 +619,6 @@ a:hover { text-decoration: underline; }
     vertical-align: -1px;
 }
 
-/* Stars 图表卡 */
-.star-chart-wrap { position: relative; height: 230px; margin-top: 1.25rem; }
-
 .gh-error {
     color: var(--text-muted);
     border: 1px dashed var(--border);

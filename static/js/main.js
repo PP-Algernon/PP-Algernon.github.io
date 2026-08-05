@@ -253,36 +253,20 @@ async function renderGithubSection(config, sectionId) {
         });
     target.appendChild(list);
 
-    // Stars 柱状图
-    const chartWrap = document.createElement('div');
-    chartWrap.className = 'star-chart-wrap';
-    chartWrap.innerHTML = '<canvas id="star-chart"></canvas>';
-    target.appendChild(chartWrap);
-
     renderCharts();
 }
 
 /* ---------------- 图表 ---------------- */
 
 let langChart = null;
-let starChart = null;
 
 function cssVar(name, fallback) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 }
 
-function hexToRgba(hex, alpha) {
-    const m = hex.replace('#', '');
-    const full = m.length === 3 ? m.split('').map(c => c + c).join('') : m;
-    const n = parseInt(full, 16);
-    return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
-}
-
 function renderCharts() {
     if (!state.ghUser || typeof Chart === 'undefined') return;
     const textColor = cssVar('--text-muted', '#888');
-    const primary = cssVar('--primary', '#6a11cb');
-    const secondary = cssVar('--secondary', '#2575fc');
 
     // 语言分布环形图（侧栏）
     const langCanvas = document.getElementById('lang-chart');
@@ -304,44 +288,6 @@ function renderCharts() {
                 maintainAspectRatio: false,
                 cutout: '62%',
                 plugins: { legend: { position: 'right', labels: { color: textColor, boxWidth: 10, font: { size: 11 } } } },
-            },
-        });
-    }
-
-    // 热门仓库 Stars 柱状图（内容区）
-    const starCanvas = document.getElementById('star-chart');
-    if (starCanvas) {
-        const topRepos = state.ghRepos
-            .slice()
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
-            .slice(0, 6);
-
-        if (starChart) starChart.destroy();
-        const ctx = starCanvas.getContext('2d');
-        const gradient = ctx.createLinearGradient(0, 0, starCanvas.parentElement.clientWidth || 400, 0);
-        gradient.addColorStop(0, hexToRgba(primary.startsWith('#') ? primary : '#6a11cb', 0.75));
-        gradient.addColorStop(1, hexToRgba(secondary.startsWith('#') ? secondary : '#2575fc', 0.75));
-
-        starChart = new Chart(starCanvas, {
-            type: 'bar',
-            data: {
-                labels: topRepos.map(r => r.name),
-                datasets: [{
-                    data: topRepos.map(r => r.stargazers_count),
-                    backgroundColor: gradient,
-                    borderRadius: 8,
-                    maxBarThickness: 26,
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: 'y',
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { ticks: { color: textColor, precision: 0 }, grid: { display: false } },
-                    y: { ticks: { color: textColor }, grid: { display: false } },
-                },
             },
         });
     }
