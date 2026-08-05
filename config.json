@@ -30,12 +30,12 @@
     "background_blur": 0,
     "background_pixelated": true
   },
-  "introduction_from_github": true,
+  "introduction_from_github": false,
   "social_links": [
     { "icon": "github", "label": "GitHub", "url": "https://github.com/PP-Algernon" }
   ],
   "sections": [
-    { "id": "home", "nav": "简介", "title": "关于我", "icon": "person-fill" },
+    { "id": "introduction", "nav": "简介", "title": "关于我", "icon": "person-fill" },
     { "id": "projects", "nav": "项目", "title": "项目经历", "icon": "code-square", "type": "github" },
     { "id": "awards", "nav": "奖项", "title": "奖项荣誉", "icon": "award-fill" }
   ],
