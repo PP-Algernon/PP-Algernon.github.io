@@ -147,7 +147,7 @@
     </div>
 
     <main class="landing">
-        <img class="landing-avatar" id="landing-avatar" src="static/assets/img/avatar.svg" alt="头像">
+        <img class="landing-avatar" id="landing-avatar" src="static/assets/img/avatar.jpg" alt="头像">
         <h1 class="landing-name" id="landing-name">&nbsp;</h1>
         <p class="landing-bio" id="landing-bio"></p>
 
@@ -169,9 +169,6 @@
             </a>
         </div>
 
-        <a class="landing-enter" href="home.html">
-            进入主页 <i class="bi bi-arrow-right"></i>
-        </a>
     </main>
 
     <footer class="landing-footer">
@@ -197,7 +194,7 @@
                     const avatar = localStorage.getItem('gh_avatar')
                         || `https://github.com/${config.github_username}.png?size=220`;
                     const img = document.getElementById('landing-avatar');
-                    img.onerror = () => { img.onerror = null; img.src = 'static/assets/img/avatar.svg'; };
+                    img.onerror = () => { img.onerror = null; img.src = 'static/assets/img/avatar.jpg'; };
                     img.src = avatar;
                     document.getElementById('favicon').href = avatar;
                 }
