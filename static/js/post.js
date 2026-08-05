@@ -28,7 +28,10 @@ async function loadPost() {
     const body = document.getElementById('post-body');
 
     if (!file) {
-        body.innerHTML = '<p style="color:var(--text-muted)">未指定文章。<a href="blog.html">返回博客列表</a></p>';
+        const raw = new URLSearchParams(location.search).get('p');
+        body.innerHTML = raw
+            ? '<p style="color:var(--text-muted)">文章参数无效：' + escapeHtml(raw) + '。<a href="blog.html">返回博客列表</a></p>'
+            : '<p style="color:var(--text-muted)">未指定文章 —— 请从博客列表进入。<a href="blog.html">返回博客列表</a></p>';
         return;
     }
 
